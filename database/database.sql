@@ -1,0 +1,4 @@
+CREATE TABLE prueba(
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    numero INT(10)
+);
