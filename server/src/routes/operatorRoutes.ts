@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { dashboardController } from '../controllers/operatorController';
+import { operatorController } from '../controllers/operatorController';
 class DashboardRoutes {
 	public router: Router = Router();
 
@@ -8,11 +8,11 @@ class DashboardRoutes {
 		this.config();
 	}
 	config(): void {
-		this.router.get('/', dashboardController.listOperator) //ruta inicial de mi servidor
-		this.router.get('/:id', dashboardController.getOne) 
-		this.router.post('/', dashboardController.createOperator);
-		this.router.delete('/:id', dashboardController.deleteOperator);
-		this.router.put('/:id', dashboardController.updateOperator);
+		this.router.get('/', operatorController.listOperator) //ruta inicial de mi servidor
+		this.router.get('/:id', operatorController.getOne) 
+		this.router.post('/', operatorController.createOperator);
+		this.router.delete('/:id', operatorController.deleteOperator);
+		this.router.put('/:id', operatorController.updateOperator);
 		//this.router.post('/', dashboardController.createUser);
 	}
 }

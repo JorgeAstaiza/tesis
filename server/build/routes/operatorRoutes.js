@@ -8,11 +8,11 @@ class DashboardRoutes {
         this.config();
     }
     config() {
-        this.router.get('/', operatorController_1.dashboardController.listOperator); //ruta inicial de mi servidor
-        this.router.get('/:id', operatorController_1.dashboardController.getOne);
-        this.router.post('/', operatorController_1.dashboardController.createOperator);
-        this.router.delete('/:id', operatorController_1.dashboardController.deleteOperator);
-        this.router.put('/:id', operatorController_1.dashboardController.updateOperator);
+        this.router.get('/', operatorController_1.operatorController.listOperator); //ruta inicial de mi servidor
+        this.router.get('/:id', operatorController_1.operatorController.getOne);
+        this.router.post('/', operatorController_1.operatorController.createOperator);
+        this.router.delete('/:id', operatorController_1.operatorController.deleteOperator);
+        this.router.put('/:id', operatorController_1.operatorController.updateOperator);
         //this.router.post('/', dashboardController.createUser);
     }
 }

@@ -4,7 +4,8 @@ import cors from 'cors';
 
 //importo rutas
 import indexRoutes from './routes/indexRoutes';
-import dashboardRoutes from './routes/operatorRoutes';
+import operatorRoutes from './routes/operatorRoutes';
+import userRoutes from './routes/userRoutes';
 
 
 class Server {
@@ -26,7 +27,8 @@ class Server {
 	}
 	routes(): void {
 		this.app.use('/login', indexRoutes);
-		this.app.use('/api/operarios', dashboardRoutes); 
+		this.app.use('/api/usuarios', userRoutes); 
+		this.app.use('/api/operarios', operatorRoutes )
 	}
 	//inicio el servidor con express
 	start(): void {

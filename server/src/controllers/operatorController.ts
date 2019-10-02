@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 import pool from '../database'
 
-class DashboardController {
+class OperatorController {
 	public async listOperator(req: Request, res: Response) {
 		const usuarios = await pool.query('SELECT * FROM usuario')
 		res.json(usuarios)
@@ -35,4 +35,4 @@ class DashboardController {
 	}
 
 }
-export const dashboardController = new DashboardController();
+export const operatorController = new OperatorController();

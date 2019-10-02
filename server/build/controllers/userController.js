@@ -13,8 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../database"));
-class OperatorController {
-    listOperator(req, res) {
+class UserController {
+    listUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const usuarios = yield database_1.default.query('SELECT * FROM usuario');
             res.json(usuarios);
@@ -30,20 +30,20 @@ class OperatorController {
             res.status(404).json({ text: 'usuario no encontrado' });
         });
     }
-    createOperator(req, res) {
+    createUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query('INSERT INTO operario set ?', [req.body]);
-            res.json({ text: 'creando un operairo' });
+            yield database_1.default.query('INSERT INTO usuario set ?', [req.body]);
+            res.json({ text: 'creando un usuario' });
         });
     }
-    deleteOperator(req, res) {
+    deleteUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             yield database_1.default.query('DELETE FROM usuario WHERE idusuario = ?', [id]);
             res.json({ text: 'eliminando operador' });
         });
     }
-    updateOperator(req, res) {
+    updateUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             yield database_1.default.query('UPDATE usuario set ? WHERE idusuario = ?', [req.body, id]);
@@ -51,4 +51,4 @@ class OperatorController {
         });
     }
 }
-exports.operatorController = new OperatorController();
+exports.userController = new UserController();
