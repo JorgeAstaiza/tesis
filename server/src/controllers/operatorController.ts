@@ -4,12 +4,12 @@ import pool from '../database'
 
 class OperatorController {
 	public async listOperator(req: Request, res: Response) {
-		const usuarios = await pool.query('SELECT * FROM usuario')
+		const usuarios = await pool.query('SELECT * FROM operario')
 		res.json(usuarios)
 	}
 	public async getOne(req: Request, res: Response): Promise<any>{
 		const { id } = req.params;
-		const usuario = await pool.query('SELECT * FROM usuario WHERE idusuario = ?', [id]);
+		const usuario = await pool.query('SELECT * FROM operario WHERE id_email_operario = ?', [id]);
 		if(usuario.length > 0){
 			return res.json(usuario[0]);
 		}
@@ -24,13 +24,13 @@ class OperatorController {
 
 	public async deleteOperator(req: Request, res: Response): Promise<void>{
 		const { id } = req.params;
-		await pool.query('DELETE FROM usuario WHERE idusuario = ?', [id])
+		await pool.query('DELETE FROM operario WHERE id_email_operario = ?', [id])
 		res.json({text: 'eliminando operador'})
 	}
 
 	public async updateOperator(req: Request, res: Response): Promise<void>{
 		const { id } = req.params;
-		await pool.query('UPDATE usuario set ? WHERE idusuario = ?', [req.body, id])
+		await pool.query('UPDATE operario set ? WHERE id_email_operario = ?', [req.body, id])
 		res.json({text: 'actualizando'})
 	}
 

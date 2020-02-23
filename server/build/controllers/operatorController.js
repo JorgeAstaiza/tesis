@@ -16,14 +16,14 @@ const database_1 = __importDefault(require("../database"));
 class OperatorController {
     listOperator(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const usuarios = yield database_1.default.query('SELECT * FROM usuario');
+            const usuarios = yield database_1.default.query('SELECT * FROM operario');
             res.json(usuarios);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const usuario = yield database_1.default.query('SELECT * FROM usuario WHERE idusuario = ?', [id]);
+            const usuario = yield database_1.default.query('SELECT * FROM operario WHERE id_email_operario = ?', [id]);
             if (usuario.length > 0) {
                 return res.json(usuario[0]);
             }
@@ -39,14 +39,14 @@ class OperatorController {
     deleteOperator(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM usuario WHERE idusuario = ?', [id]);
+            yield database_1.default.query('DELETE FROM operario WHERE id_email_operario = ?', [id]);
             res.json({ text: 'eliminando operador' });
         });
     }
     updateOperator(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('UPDATE usuario set ? WHERE idusuario = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE operario set ? WHERE id_email_operario = ?', [req.body, id]);
             res.json({ text: 'actualizando' });
         });
     }

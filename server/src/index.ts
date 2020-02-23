@@ -6,6 +6,8 @@ import cors from 'cors';
 import indexRoutes from './routes/indexRoutes';
 import operatorRoutes from './routes/operatorRoutes';
 import userRoutes from './routes/userRoutes';
+import rankingRoutes from './routes/rankingRoutes';
+import solicitudesPendientesRoutes from './routes/solicitudesPendientesRoutes';
 
 
 class Server {
@@ -28,7 +30,9 @@ class Server {
 	routes(): void {
 		this.app.use('/login', indexRoutes);
 		this.app.use('/api/usuarios', userRoutes); 
-		this.app.use('/api/operarios', operatorRoutes )
+		this.app.use('/api/operarios', operatorRoutes);
+		this.app.use('/api/ranking', rankingRoutes);
+		this.app.use('/api/solicitudes', solicitudesPendientesRoutes);
 	}
 	//inicio el servidor con express
 	start(): void {

@@ -16,14 +16,14 @@ const database_1 = __importDefault(require("../database"));
 class UserController {
     listUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const usuarios = yield database_1.default.query('SELECT * FROM usuario');
+            const usuarios = yield database_1.default.query('select U.id_email_usuario, U.nombre, U.apellido, U.fecha_nacimiento, U.genero, U.telefono, O.cedula, O.puntos, O.foto from usuario U, operario O where U.id_email_usuario = O.usuario_id_email_usuario and U.estado = "activo"');
             res.json(usuarios);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const usuario = yield database_1.default.query('SELECT * FROM usuario WHERE idusuario = ?', [id]);
+            const usuario = yield database_1.default.query('select U.id_email_usuario, U.nombre, U.apellido, U.fecha_nacimiento, U.genero, U.telefono, O.cedula, O.puntos, O.foto from usuario U, operario O where U.id_email_usuario = O.usuario_id_email_usuario and U.estado = "activo" and id_email_usuario = ?', [id]);
             if (usuario.length > 0) {
                 return res.json(usuario[0]);
             }
@@ -39,14 +39,14 @@ class UserController {
     deleteUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM usuario WHERE idusuario = ?', [id]);
+            yield database_1.default.query('UPDATE usuario set estado = "inactivo" WHERE id_email_usuario = ?', [id]);
             res.json({ text: 'eliminando operador' });
         });
     }
     updateUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('UPDATE usuario set ? WHERE idusuario = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE usuario set ? WHERE id_email_usuario = ?', [req.body, id]);
             res.json({ text: 'actualizando' });
         });
     }

@@ -10,6 +10,8 @@ const cors_1 = __importDefault(require("cors"));
 const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
 const operatorRoutes_1 = __importDefault(require("./routes/operatorRoutes"));
 const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
+const rankingRoutes_1 = __importDefault(require("./routes/rankingRoutes"));
+const solicitudesPendientesRoutes_1 = __importDefault(require("./routes/solicitudesPendientesRoutes"));
 class Server {
     constructor() {
         this.app = express_1.default();
@@ -27,6 +29,8 @@ class Server {
         this.app.use('/login', indexRoutes_1.default);
         this.app.use('/api/usuarios', userRoutes_1.default);
         this.app.use('/api/operarios', operatorRoutes_1.default);
+        this.app.use('/api/ranking', rankingRoutes_1.default);
+        this.app.use('/api/solicitudes', solicitudesPendientesRoutes_1.default);
     }
     //inicio el servidor con express
     start() {
